@@ -4,8 +4,10 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import axios from 'axios';
 
+
 // Load environment variables
 dotenv.config();
+
 
 const app = express();
 const router = Router();
@@ -15,6 +17,7 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+
 // Types
 interface TwitterProfile {
   username: string;
@@ -22,6 +25,7 @@ interface TwitterProfile {
   avatar_url: string;
   description: string;
 }
+
 
 // Twitter API helper
 const twitterApi = axios.create({
@@ -31,7 +35,7 @@ const twitterApi = axios.create({
   }
 });
 
-// Routes
+// Twitter Routes
 const getTwitterProfile: RequestHandler = async (req, res, next) => {
   try {
     const { username } = req.params;
@@ -64,7 +68,7 @@ const getTwitterProfile: RequestHandler = async (req, res, next) => {
   }
 };
 
-router.get('/twitter/profile/:username', getTwitterProfile);
+
 
 // Health check endpoint
 router.get('/health', (_, res) => {
